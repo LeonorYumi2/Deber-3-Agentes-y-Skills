@@ -1,6 +1,6 @@
 # Spec 001 — Iniciar y controlar una sesión de estudio
 
-Estado: borrador
+Estado: aprobada
 HU de origen: docs/historias/HU-001.md
 
 ## Contexto y objetivo
@@ -19,7 +19,9 @@ Estudiante de la Academia Cotopaxi que usa la aplicación para sesiones de estud
 
 - **Tiempo de estudio configurado:** duración asignada a la fase de estudio. Por defecto son 25 minutos (decisión P5).
 - **Tiempo inicial de la fase:** duración con la que empezó la fase actualmente en curso (decisión P2). Se conserva aunque cambie la configuración en ajustes mientras la fase está activa.
-- **Sesión:** estado del temporizador (detenido, corriendo o pausado), fase actual y tiempo restante.
+- **Sesión:** estado del temporizador (detenido, corriendo, pausado o terminado), fase actual y tiempo restante.
+- **Detenido:** el temporizador está en el tiempo inicial de la fase y no se ha iniciado; no hay cuenta regresiva en curso.
+- **Terminado:** el tiempo restante llegó a 00:00 y el temporizador se detuvo; la fase concluyó.
 
 ## Requisitos funcionales
 
@@ -29,7 +31,10 @@ Estudiante de la Academia Cotopaxi que usa la aplicación para sesiones de estud
 - RF-4: CUANDO el usuario decide reiniciar el temporizador y lo confirma, EL SISTEMA vuelve el temporizador al tiempo inicial de la fase en curso (la duración con la que empezó esa fase) y lo deja detenido esperando a que el usuario presione iniciar. Origen: HU-001, escenario "Reiniciar el temporizador"; decisiones P2 (duración con la que empezó la fase), P6 (confirmación antes de reiniciar), P8 (queda detenido esperando iniciar).
 - RF-5: CUANDO el usuario decide reiniciar el temporizador y cancela la confirmación, EL SISTEMA conserva el tiempo que llevaba el temporizador sin cambios. Origen: HU-001, escenario "Cambiar de opinión al reiniciar".
 - RF-6: CUANDO cambia el estado de la sesión (iniciar, pausar, reanudar o reiniciar), EL SISTEMA guarda la sesión de forma local para que se pueda recuperar ante cierre abrupto de la aplicación. Origen: decisión P1 (persistencia al cambiar el estado).
-- RF-7: AL abrir la aplicación por primera vez tras instalarla, EL SISTEMA muestra el temporizador con el tiempo de estudio por defecto sin requerir configuración previa. Origen: decisión P5 (primera vez con valores por defecto).
+- RF-7: CUANDO se abre la aplicación por primera vez tras instalarla, EL SISTEMA muestra el temporizador con el tiempo de estudio por defecto sin requerir configuración previa. Origen: decisión P5 (primera vez con valores por defecto).
+- RF-8: CUANDO el temporizador está detenido (en el tiempo inicial, sin haber iniciado), EL SISTEMA deja deshabilitado el botón Reiniciar. Origen: decisiones P4 (fila "Detenido") y P8.
+- RF-9: MIENTRAS haya una sesión activa (el temporizador esté corriendo o pausado), EL SISTEMA no habilita la acción Iniciar; el botón principal muestra "Pausar" (corriendo) o "Reanudar" (pausado), nunca "Iniciar". Origen: decisión P4 (filas "Corriendo" y "Pausado").
+- RF-10: CUANDO el temporizador está terminado (llegó a 00:00), EL SISTEMA deja deshabilitado el botón principal y deja habilitado el botón Reiniciar (con la confirmación de decisión P6). Origen: Aclaraciones de decisiones.md y P6 (confirmación antes de reiniciar).
 
 ## Requisitos no funcionales
 
@@ -56,11 +61,8 @@ Estudiante de la Academia Cotopaxi que usa la aplicación para sesiones de estud
 
 - Cada escenario de HU-001 está cubierto por al menos un requisito funcional verificable.
 - La lógica del temporizador se prueba y las pruebas están en verde.
-- No hay código escrito sin que este requisito esté en la spec.
+- No se implementa nada que no esté en esta spec.
 
 ## Dudas abiertas
 
-- [NECESITA ACLARACIÓN] ¿El botón Reiniciar debe estar deshabilitado cuando no hay sesión activa (estado detenido sin sesión previa), según decisión P4?
-- [NECESITA ACLARACIÓN] ¿Qué ocurre si el usuario presiona iniciar cuando ya hay una sesión activa (corriendo o pausada)? HU-001 no especifica este caso.
-- [NECESITA ACLARACIÓN] ¿Qué ocurre cuando el tiempo restante llega a cero? ¿Se detiene el temporizador, se avisa al usuario o se pasa a la siguiente fase? HU-001 no cubre el fin de la fase.
-- [NECESITA ACLARACIÓN] ¿Se permite reiniciar cuando el temporizador ya está en el tiempo inicial de la fase, o el botón reiniciar queda deshabilitado?
+Ninguna.

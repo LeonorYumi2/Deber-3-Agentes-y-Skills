@@ -126,4 +126,11 @@ Máximo 8 preguntas del grilling. Todas respondidas.
 
 ---
 
-Esperando tu aprobación antes de escribir la spec ni código.
+## Aclaraciones
+
+- **Duda 3 — fin de fase al llegar a cero:** opción a. Al llegar a 00:00 el temporizador se detiene en 00:00. El aviso de fin de fase y la alarma pertenecen a HU-004; la alternancia a la siguiente fase pertenece a HU-002.
+- **RF-8 y RF-10 separados por estado:** RF-8 aplica a "detenido" (tiempo inicial, sin iniciar; Reiniciar deshabilitado) y RF-10 aplica a "terminado" (llegó a 00:00; botón principal deshabilitado, Reiniciar habilitado con confirmación de P6). Origen de ambos: P4 y P8. Se elimina la frase "no se permite reiniciar sin que haya transcurrido tiempo" (no está en ninguna decisión).
+- **RF-7:** "AL abrir" cambiado por "CUANDO se abre".
+- **Nuevo requisito (RF-10):** al llegar a 00:00, el botón principal queda deshabilitado y Reiniciar habilitado (con confirmación de P6).
+- Dudas abiertas de la spec quedan vacías (sin dudas pendientes).
+- Estado de las aclaraciones: terminado.
