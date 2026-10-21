@@ -9,10 +9,10 @@ Formato: una tarea por vez. Las pruebas van DENTRO de cada tarea (primero en roj
 - [x] **T1. Instalar y configurar Jest y verificar async-storage.** (transversal, configuración)
   - Hecho cuando: se instalaron `jest`, `jest-expo` y `@types/jest`, se verificó que `@react-native-async-storage/async-storage` está disponible, `npx jest` corre con una prueba trivial en verde y `npx tsc --noEmit` no da errores.
 
-- [ ] **T2. Dominio (a): createInitialSession, start, pause, resume, remainingTime, statusAt.** RF-1, RF-2, RF-3, RF-7
+- [x] **T2. Dominio (a): createInitialSession, start, pause, resume, remainingTime, statusAt.** RF-1, RF-2, RF-3, RF-7
   - Hecho cuando: las pruebas unitarias se escribieron primero en rojo (`src/domain/__tests__/session.test.ts`), luego se implementaron las funciones puras en `src/domain/session.ts` recibiendo `ahora` como parámetro (sin `Date.now()` ni `setInterval`), y `npx jest` está en verde para estas funciones.
 
-- [ ] **T3. Dominio (b): reset y buttonConfig.** RF-4, RF-8, RF-9, RF-10
+- [x] **T3. Dominio (b): reset y buttonConfig.** RF-4, RF-8, RF-9, RF-10
   - Hecho cuando: las pruebas unitarias se escribieron primero en rojo, luego se implementaron `reset` y `buttonConfig` en `src/domain/session.ts`, y `npx jest` está en verde (incluye `finished` con `endTime <= ahora` y Reiniciar deshabilitado en `idle`).
 
 - [ ] **T4. Persistencia: saveSession y loadSession.** RF-6, RF-7
